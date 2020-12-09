@@ -1,0 +1,2 @@
+Libs:
+sys, PyQt5, sqlite3.
