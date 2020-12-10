@@ -1,14 +1,15 @@
 from sys import argv, exit
 from PyQt5.QtWidgets import QApplication, QMainWindow,\
     QTableWidgetItem, QMenu, QAction, QMessageBox
-from PyQt5 import uic
+from UI import Ui_MainWindow
+from addEditCoffeeForm import Ui_MainWindow_2
 import sqlite3
 
 
-class Coffeetable(QMainWindow):
+class Coffeetable(QMainWindow, Ui_MainWindow):
     def __init__(self):
         super().__init__()
-        uic.loadUi('UI.ui', self)
+        self.setupUi(self)
         self.connection = sqlite3.connect('cofee.sqlite')
         self.cur = self.connection.cursor()
         self.initUI()
@@ -47,11 +48,11 @@ class Coffeetable(QMainWindow):
         self.add_widg.show()
 
 
-class AddCoffee(QMainWindow):
+class AddCoffee(QMainWindow, Ui_MainWindow_2):
     def __init__(self, obj):
         super().__init__()
         self.main = obj
-        uic.loadUi('addEditCoffeeForm.ui', self)
+        self.setupUi(self)
         self.connection = sqlite3.connect('cofee.sqlite')
         self.cur = self.connection.cursor()
         self.table_row = ''
